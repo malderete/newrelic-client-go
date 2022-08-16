@@ -41,7 +41,7 @@ func (n *Nrdb) QueryHistoryWithContext(ctx context.Context) (*[]NRQLHistoricalQu
 const (
 	gqlNrqlQueryHistoryQuery = `{ actor { nrqlQueryHistory { accountId nrql timestamp } } }`
 
-	gqlNrqlQuery = `query($query: Nrql!, $accountId: Int!) { actor { account(id: $accountId) { nrql(query: $query) {
+	gqlNrqlQuery = `query($query: Nrql!, $accountId: Int!) { actor { account(id: $accountId) { nrql(query: $query, timeout: 120) {
     currentResults otherResult previousResults results totalResult
     metadata { eventTypes facets messages timeWindow { begin compareWith end since until } }
   } } } }`
